@@ -1,9 +1,9 @@
 import "./App.css";
-import Spell from "./components/spell";
+import Phrase from "./components/Phrase";
 function App() {
   return (
     <div className="App">
-      <Spell />
+      <Phrase />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import rightImg from '../assets/right.webp'
 import wrongImg from '../assets/wrong.webp'
-import "./spell.css";
-const Spell = () => {
+import "./Phrase.css";
+const Phrase = () => {
   const phrases = [
     {
       text: "Live with gratitude",
@@ -138,4 +138,4 @@ const Spell = () => {
   );
 };
 
-export default Spell;
+export default Phrase;

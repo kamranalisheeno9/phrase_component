@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+.card_done_container {
+  position: relative;
+  top: 0;
+}
+.card-container {
+  width: 300px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: 0.5s all ease;
+}
+
+.done {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0.1);
+  transition: 0.5s all ease-in;
+}
+.inactiveCard {
+  transform: scale(1);
+}
+.activeCard {
+  transform: scale(0);
+}
+.inactive {
+  transform: scale(0);
+}
+.active {
+  transform: scale(2);
+}
+.phrase {
+  text-align: center;
+  width: 50%;
+  display: flex;
+  margin: 60% 50%;
+  transform: translate(-50%, -40%);
+  font-weight: bold;
+  font-size: 28px;
+  text-transform: uppercase;
+  line-height: 40px;
+  font-family: "Fredoka One", Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+}
+.buttons {
+  margin: 20px 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.right,
+.wrong {
+  cursor: pointer;
+}
+.points {
+  text-align: right;
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Fredoka One", Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+  color: #424242;
+}
+.or {
+  color: rgb(247, 245, 245);
+  font-size: 18px;
+}
+.points span {
+  color: black;
+}
+.circle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid rgb(247, 245, 245);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(247, 245, 245);
+  font-size: 35px;
+  transition: 0.2s all linear;
+  user-select: none !important;
+}
+.circle-btn:hover {
+  opacity: 0.8;
+}

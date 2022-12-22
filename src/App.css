@@ -1,5 +1,9 @@
 .App{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  background: url('./assets/bg.jpg') !important;
+  height: 100vh;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+
  }

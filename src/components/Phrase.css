@@ -122,27 +122,3 @@
 .circle-btn:hover {
   opacity: 0.8;
 }
-
-/* Final Card Styling */
-
-.final_card_container {
-  width: 400px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.28);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: 0.5s all ease;
-  margin: 10%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.final_card_container p {
-  font-family: "Fredoka One", Cambria, Cochin, Georgia, Times, "Times New Roman",
-    serif;
-  font-size: 34px;
-}

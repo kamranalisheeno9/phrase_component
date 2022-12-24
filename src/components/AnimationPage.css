@@ -1,0 +1,252 @@
+/* Importing Fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+/* Main Container */
+.main_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Final Card Styling */
+
+.final_card_container {
+  width: 400px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: 0.3s all ease;
+  margin: 10%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.final_card_container p {
+  font-family: "Fredoka One", Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+  font-size: 34px;
+}
+
+/* Image Activity Finished Container */
+
+.animation_page_img_container {
+  width: 320px;
+  height: 320px;
+  transition: 0.3s all linear;
+  transform-style: preserve-3d;
+  animation: animate_img 0.5s ease-in;
+}
+
+.animation_page_img_container img {
+  width: 100%;
+}
+
+/* Text Activity Finished Container */
+
+.animation_page_text_container {
+  text-align: center;
+  font-family: "Fredoka One", Cambria, Cochin, Georgia, Times, "Times New Roman",
+    serif;
+  font-size: 32px;
+  color: rgb(62, 62, 62);
+  line-height: 35px;
+}
+.text1 {
+  animation: animate_text_1 0.5s ease-in;
+}
+.text2 {
+  animation: animate_text_2 0.5s ease-in;
+}
+.inactive1 {
+  animation: animate_text_1_inactive 1s ease-out;
+  opacity: 0;
+}
+.inactive2 {
+  animation: animate_text_2_inactive 1s ease-out;
+  opacity: 0;
+}
+.inactive_img {
+  opacity: 0;
+  animation: animate_img_inactive 1s ease-out;
+}
+
+/* Activity Finished Animation */
+
+@keyframes animate_img {
+  from {
+    opacity: 0.2;
+    transform: rotateY(180deg) scale(0);
+    position: relative;
+  }
+  to {
+    position: relative;
+    opacity: 1;
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes animate_text_1 {
+  from {
+    position: relative;
+    left: -200px;
+  }
+  to {
+    position: relative;
+    left: 0px;
+  }
+}
+@keyframes animate_text_2 {
+  from {
+    position: relative;
+    right: -200px;
+  }
+  to {
+    position: relative;
+    right: 0px;
+  }
+}
+@keyframes animate_img_inactive {
+  from {
+    opacity: 1;
+    transform: rotateY(360deg) scale(1);
+    position: relative;
+  }
+  to {
+    position: relative;
+    opacity: 1;
+    transform: rotateY(0deg) scale(0);
+    opacity: 0;
+  }
+}
+@keyframes animate_text_1_inactive {
+  from {
+    opacity: 1;
+    position: relative;
+    left: 0px;
+  }
+  to {
+    position: relative;
+    left: -200px;
+    opacity: 0;
+  }
+}
+@keyframes animate_text_2_inactive {
+  from {
+    opacity: 1;
+    position: relative;
+    right: 0px;
+  }
+  to {
+    position: relative;
+    right: -200px;
+    opacity: 0;
+  }
+}
+/* Image, Lets See Resutls Container */
+
+.animation_page_img2_container {
+  width: 320px;
+  height: 320px;
+  transition: 0.3s all linear;
+  transform-style: preserve-3d;
+  animation: animate_img_2 0.5s ease-in;
+}
+
+.animation_page_img2_container img {
+  width: 100%;
+}
+
+.text3 {
+  animation: animate_text_3 0.5s ease-in;
+}
+.text4 {
+  animation: animate_text_4 0.5s ease-in;
+}
+.inactive3 {
+  animation: animate_text_3_inactive 1s ease-out;
+  opacity: 0;
+}
+.inactive4 {
+  animation: animate_text_4_inactive 1s ease-out;
+  opacity: 0;
+}
+.inactive_img2 {
+  opacity: 0;
+  animation: animate_img_2_inactive 1s ease-out;
+}
+
+/* Activity Finished Animation */
+
+@keyframes animate_img_2 {
+  from {
+    opacity: 0.2;
+    transform: rotateY(180deg) scale(0);
+    position: relative;
+  }
+  to {
+    position: relative;
+    opacity: 1;
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes animate_text_3 {
+  from {
+    position: relative;
+    left: -200px;
+  }
+  to {
+    position: relative;
+    left: 0px;
+  }
+}
+@keyframes animate_text_4 {
+  from {
+    position: relative;
+    right: -200px;
+  }
+  to {
+    position: relative;
+    right: 0px;
+  }
+}
+@keyframes animate_img_2_inactive {
+  from {
+    opacity: 1;
+    transform: rotateY(360deg) scale(1);
+    position: relative;
+  }
+  to {
+    position: relative;
+    opacity: 1;
+    transform: rotateY(0deg) scale(0);
+    opacity: 0;
+  }
+}
+@keyframes animate_text_3_inactive {
+  from {
+    opacity: 1;
+    position: relative;
+    left: 0px;
+  }
+  to {
+    position: relative;
+    left: -200px;
+    opacity: 0;
+  }
+}
+@keyframes animate_text_4_inactive {
+  from {
+    opacity: 1;
+    position: relative;
+    right: 0px;
+  }
+  to {
+    position: relative;
+    right: -200px;
+    opacity: 0;
+  }
+}

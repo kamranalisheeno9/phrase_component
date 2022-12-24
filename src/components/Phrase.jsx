@@ -3,6 +3,8 @@ import rightImg from "../assets/right.webp";
 import wrongImg from "../assets/wrong.webp";
 import wrongSound from "../assets/wrongaction.wav";
 import rightSound from "../assets/activitycompletepluck.wav";
+import AnimationPage from './AnimationPage';
+
 import "./Phrase.css";
 const Phrase = () => {
   // Phrases Data
@@ -57,7 +59,7 @@ const Phrase = () => {
     const timeoutID = setTimeout(() => {
       setSeconds(seconds + 1);
     }, 1000);
-    if (mins === 4) {
+    if (mins === 1) {
       clearTimeout(timeoutID);
       setFinalResult(true);
     } else if (seconds === 60) {
@@ -92,11 +94,7 @@ const Phrase = () => {
     if (correct === phrases[num].text) {
       setPoints(points + 1);
 
-      repeatedPhrases.map((repeated) => {
-        if (repeated.text === phrases[num].text) {
-          setPoints(points);
-        }
-      });
+
     }
     setActive(true);
     {
@@ -134,13 +132,13 @@ const Phrase = () => {
     <>
       {finalResult ? (
         // Showing Final Result Component
+          <>
+        <AnimationPage points={points} />
 
-        <div className="final_card_container">
-          <p> Final Result : {points}</p>
-        </div>
+        </>
       ) : (
         // Main Phrase Component
-
+      <>  
         <div>
           <div className="points">
             <div>
@@ -182,6 +180,7 @@ const Phrase = () => {
             </div>
           </div>
         </div>
+        </>
       )}
     </>
   );

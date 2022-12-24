@@ -59,7 +59,7 @@ const Phrase = () => {
     const timeoutID = setTimeout(() => {
       setSeconds(seconds + 1);
     }, 1000);
-    if (mins === 1) {
+    if (mins === 4) {
       clearTimeout(timeoutID);
       setFinalResult(true);
     } else if (seconds === 60) {

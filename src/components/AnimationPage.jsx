@@ -54,7 +54,7 @@ const AnimationPage = (props) => {
           <p> Final Result : {props.points} </p>
         </div>
       ) : letsSee ? (
-        <>
+        <div className="overflow">
           {/* Lets See Ambients Part */}
 
           <div
@@ -80,9 +80,9 @@ const AnimationPage = (props) => {
               new ambients!
             </span>
           </div>
-        </>
+        </div>
       ) : (
-        <>
+        <div className="overflow">
           {/* Finished Activity Part */}
 
           <div
@@ -105,7 +105,7 @@ const AnimationPage = (props) => {
               has finish!
             </span>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

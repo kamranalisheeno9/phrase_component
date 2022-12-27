@@ -3,7 +3,7 @@ import rightImg from "../assets/right.webp";
 import wrongImg from "../assets/wrong.webp";
 import wrongSound from "../assets/wrongaction.wav";
 import rightSound from "../assets/activitycompletepluck.wav";
-import AnimationPage from './AnimationPage';
+import AnimationPage from "./AnimationPage";
 
 import "./Phrase.css";
 const Phrase = () => {
@@ -39,6 +39,18 @@ const Phrase = () => {
     {
       text: "be humble to people",
       right: "be humble to people",
+    },
+    {
+      text: "I am not grateful",
+      right: "I am grateful",
+    },
+    {
+      text: "I am happy",
+      right: "I am happy",
+    },
+    {
+      text: "I do not deserve happiness",
+      right: "I deserve happiness",
     },
   ];
 
@@ -90,13 +102,18 @@ const Phrase = () => {
   // Right Answer Function
 
   const addPoints = (correct) => {
-    rightPlay();
     if (correct === phrases[num].text) {
       setPoints(points + 1);
-
-
+      setActive(true);
+      rightPlay();
+    } else if (correct !== phrases[num].text) {
+      setActive2(true);
+      setActive(false);
+      wrongPlay();
+      setTimeout(() => {
+        setActive2(false);
+      }, 2000);
     }
-    setActive(true);
     {
       phrases
         .filter((phrase) => phrase.text.includes(phrases[num].text))
@@ -132,54 +149,57 @@ const Phrase = () => {
     <>
       {finalResult ? (
         // Showing Final Result Component
-          <>
-        <AnimationPage points={points} />
-
+        <>
+          <AnimationPage points={points} />
         </>
       ) : (
         // Main Phrase Component
-      <>  
-        <div>
-          <div className="points">
-            <div>
-              {mins} : {seconds}
+        <>
+          <div>
+            <div className="points">
+              <div>
+                {mins} : {seconds}
+              </div>
+              <span> Ambients : </span> {points} {points <= 1 ? "pt" : "pts"}
             </div>
-            <span> Ambients : </span> {points} {points <= 1 ? "pt" : "pts"}
+            <div className="card_done_container">
+              <div className={active ? "active done" : "inactive done"}>
+                {active ? (
+                  <img width="50px" src={rightImg} alt="right" />
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className={active2 ? "active done" : "inactive done"}>
+                {active2 ? (
+                  <img width="50px" src={wrongImg} alt="wrong" />
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div
+                className={
+                  active2 || active
+                    ? "card-container activeCard"
+                    : "card-container inactiveCard"
+                }
+              >
+                <p className="phrase">{phrases[num].text}</p>
+              </div>
+            </div>
+            <div className="buttons">
+              <div className="wrong" onClick={active2 ? null : () => Wrong()}>
+                <div className="circle-btn"> X</div>
+              </div>
+              <p className="or">or</p>
+              <div
+                className="right"
+                onClick={active ? null : () => addPoints(phrases[num].right)}
+              >
+                <div className="circle-btn"> &#10004;</div>
+              </div>
+            </div>
           </div>
-          <div className="card_done_container">
-            <div className={active ? "active done" : "inactive done"}>
-              {active ? <img width="50px" src={rightImg} alt="right" /> : <></>}
-            </div>
-            <div className={active2 ? "active done" : "inactive done"}>
-              {active2 ? (
-                <img width="50px" src={wrongImg} alt="wrong" />
-              ) : (
-                <></>
-              )}
-            </div>
-            <div
-              className={
-                active2 || active
-                  ? "card-container activeCard"
-                  : "card-container inactiveCard"
-              }
-            >
-              <p className="phrase">{phrases[num].text}</p>
-            </div>
-          </div>
-          <div className="buttons">
-            <div className="wrong" onClick={active2 ? null : () => Wrong()}>
-              <div className="circle-btn"> X</div>
-            </div>
-            <p className="or">or</p>
-            <div
-              className="right"
-              onClick={active ? null : () => addPoints(phrases[num].right)}
-            >
-              <div className="circle-btn"> &#10004;</div>
-            </div>
-          </div>
-        </div>
         </>
       )}
     </>

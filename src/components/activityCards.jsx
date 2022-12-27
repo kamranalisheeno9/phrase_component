@@ -70,9 +70,13 @@ const Phrase = () => {
   };
 
   // Answer Function
-
-  const validateAnswer = (thePhrase, TheCorrectNum) => {
-    if (thePhrase === phrases[num].text && TheCorrectNum === 1) {
+  // Complete answer section is update so replace 'right and wrong functions section' with 'answer section' also update function of buttons on lines 185 and 204 by changing 'onClick function' .
+  const validateAnswer = (thePhrase, TheCorrectNum, ButtonBehaviour) => {
+    if (
+      thePhrase === phrases[num].text &&
+      TheCorrectNum === 1 &&
+      ButtonBehaviour === 1
+    ) {
       setPoints(points + 1);
       setActive(true);
       rightPlay();
@@ -80,7 +84,11 @@ const Phrase = () => {
         setActive(false);
       }, 2000);
       console.log(thePhrase, TheCorrectNum);
-    } else if (thePhrase === phrases[num].text && TheCorrectNum === 0) {
+    } else if (
+      thePhrase === phrases[num].text &&
+      TheCorrectNum === 0 &&
+      ButtonBehaviour === 1
+    ) {
       setActive2(true);
       wrongPlay();
       setTimeout(() => {
@@ -91,7 +99,33 @@ const Phrase = () => {
         setActive2(false);
       }, 2000);
       console.log(thePhrase, TheCorrectNum);
+    } else if (
+      thePhrase === phrases[num].text &&
+      TheCorrectNum === 0 &&
+      ButtonBehaviour === 0
+    ) {
+      setPoints(points + 1);
+      setActive(true);
+      rightPlay();
+      setTimeout(() => {
+        setActive(false);
+      }, 2000);
+    } else if (
+      thePhrase === phrases[num].text &&
+      TheCorrectNum === 1 &&
+      ButtonBehaviour === 0
+    ) {
+      setActive2(true);
+      wrongPlay();
+      setTimeout(() => {
+        newRandomNumber();
+      }, 1000);
+
+      setTimeout(() => {
+        setActive2(false);
+      }, 2000);
     }
+
     {
       phrases
         .filter((phrase) => phrase.text.includes(phrases[num].text))
@@ -148,22 +182,36 @@ const Phrase = () => {
               </div>
             </div>
             <div className="buttons">
+              {/* Onclick Function is Updated */}
+
               <div
                 className="wrong"
                 onClick={
-                  active2 ? null : () => validateAnswer(phrases[num].text, 0)
+                  active2
+                    ? null
+                    : () =>
+                        validateAnswer(
+                          phrases[num].text,
+                          phrases[num].answer,
+                          0
+                        )
                 }
               >
                 <div className="circle-btn"> X</div>
               </div>
               <p className="or">or</p>
+              {/* Onclick Function is Updated */}
               <div
                 className="right"
                 onClick={
                   active
                     ? null
                     : () =>
-                        validateAnswer(phrases[num].text, phrases[num].answer)
+                        validateAnswer(
+                          phrases[num].text,
+                          phrases[num].answer,
+                          1
+                        )
                 }
               >
                 <div className="circle-btn"> &#10004;</div>

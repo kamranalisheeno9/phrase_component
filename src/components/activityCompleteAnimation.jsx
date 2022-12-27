@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import "./AnimationPage.css";
-import ActivityImg from '../assets/activity.png'
-import LetsSeeImg from '../assets/letssee.png'
+import "./activityCompleteAnimation.css";
+import ActivityImg from '../assets/ambient_back.webp'
+import LetsSeeImg from '../assets/ambient_front.webp'
 const AnimationPage = (props) => {
   // Variable Declaration
 
@@ -16,7 +16,7 @@ const AnimationPage = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setActivityFinish(true);
-    }, 1500);
+    }, 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -25,14 +25,14 @@ const AnimationPage = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLetsSee(true);
-    }, 2500);
+    }, 4400);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLetsSeeAnimation(true);
-    }, 3500);
+    }, 6600);
     return () => clearTimeout(timer);
   }, []);
 
@@ -41,7 +41,7 @@ const AnimationPage = (props) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setfinalResults(true);
-    }, 4500);
+    }, 8800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -98,7 +98,7 @@ const AnimationPage = (props) => {
           <div className="animation_page_text_container">
             <span className={activityFinish ? "inactive1" : "text1"}>
               {" "}
-              This activitiy{" "}
+              This activity{" "}
             </span>{" "}
             <span className={activityFinish ? "inactive2" : "text2"}>
               {" "}

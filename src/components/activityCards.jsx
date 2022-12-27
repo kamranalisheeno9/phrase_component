@@ -3,58 +3,28 @@ import rightImg from "../assets/right.webp";
 import wrongImg from "../assets/wrong.webp";
 import wrongSound from "../assets/wrongaction.wav";
 import rightSound from "../assets/activitycompletepluck.wav";
-import AnimationPage from "./AnimationPage";
+import AnimationPage from "./activityCompleteAnimation";
 
-import "./Phrase.css";
+import "./activityCards.css";
 const Phrase = () => {
   // Phrases Data
 
   const phrases = [
     {
-      text: "Live with gratitude",
-      right: "Live with gratitude",
-    },
-    {
-      text: "Live with proud",
-      right: "Live with proud",
-    },
-
-    {
-      text: "be an honest person",
-      right: "be an honest person",
-    },
-
-    {
-      text: "honesty is best policy",
-      right: "honesty is best policy",
-    },
-    {
-      text: "do good to people",
-      right: "do good to people",
-    },
-    {
-      text: "be kind person",
-      right: "be kind person",
-    },
-    {
-      text: "be humble to people",
-      right: "be humble to people",
-    },
-    {
-      text: "I am not grateful",
-      right: "I am grateful",
+      text: "I am grateful",
+      answer: 1,
     },
     {
       text: "I am happy",
-      right: "I am happy",
+      answer: 1,
     },
     {
-      text: "I do not deserve happiness",
-      right: "I deserve happiness",
+      text: "I am not happy",
+      answer: 0,
     },
   ];
 
-  // State Variaable Declared
+  // State Variable Declared
 
   const [repeatedPhrases, setRepeatedPhrases] = useState([]);
   const [num, setNum] = useState(0);
@@ -71,7 +41,7 @@ const Phrase = () => {
     const timeoutID = setTimeout(() => {
       setSeconds(seconds + 1);
     }, 1000);
-    if (mins === 4) {
+    if (mins === 1) {
       clearTimeout(timeoutID);
       setFinalResult(true);
     } else if (seconds === 60) {
@@ -80,7 +50,7 @@ const Phrase = () => {
     }
   });
 
-  // Random Data Occuring Function
+  // Random Data Occurring Function
 
   function newRandomNumber() {
     const newNum = Math.floor(Math.random() * phrases.length);
@@ -99,20 +69,28 @@ const Phrase = () => {
     new Audio(rightSound).play();
   };
 
-  // Right Answer Function
+  // Answer Function
 
-  const addPoints = (correct) => {
-    if (correct === phrases[num].text) {
+  const validateAnswer = (thePhrase, TheCorrectNum) => {
+    if (thePhrase === phrases[num].text && TheCorrectNum === 1) {
       setPoints(points + 1);
       setActive(true);
       rightPlay();
-    } else if (correct !== phrases[num].text) {
+      setTimeout(() => {
+        setActive(false);
+      }, 2000);
+      console.log(thePhrase, TheCorrectNum);
+    } else if (thePhrase === phrases[num].text && TheCorrectNum === 0) {
       setActive2(true);
-      setActive(false);
       wrongPlay();
+      setTimeout(() => {
+        newRandomNumber();
+      }, 1000);
+
       setTimeout(() => {
         setActive2(false);
       }, 2000);
+      console.log(thePhrase, TheCorrectNum);
     }
     {
       phrases
@@ -125,24 +103,6 @@ const Phrase = () => {
     setTimeout(() => {
       newRandomNumber();
     }, 1000);
-
-    setTimeout(() => {
-      setActive(false);
-    }, 2000);
-  };
-
-  // Wrong Answer Function
-
-  const Wrong = () => {
-    wrongPlay();
-    setActive2(true);
-    setTimeout(() => {
-      newRandomNumber();
-    }, 1000);
-
-    setTimeout(() => {
-      setActive2(false);
-    }, 2000);
   };
 
   return (
@@ -188,13 +148,23 @@ const Phrase = () => {
               </div>
             </div>
             <div className="buttons">
-              <div className="wrong" onClick={active2 ? null : () => Wrong()}>
+              <div
+                className="wrong"
+                onClick={
+                  active2 ? null : () => validateAnswer(phrases[num].text, 0)
+                }
+              >
                 <div className="circle-btn"> X</div>
               </div>
               <p className="or">or</p>
               <div
                 className="right"
-                onClick={active ? null : () => addPoints(phrases[num].right)}
+                onClick={
+                  active
+                    ? null
+                    : () =>
+                        validateAnswer(phrases[num].text, phrases[num].answer)
+                }
               >
                 <div className="circle-btn"> &#10004;</div>
               </div>

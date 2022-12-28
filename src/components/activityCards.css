@@ -53,19 +53,32 @@
 
 /* Phrase Text Styling */
 
+    /* Updated */
+
 .phrase {
   text-align: center;
-  width: 50%;
+  width: 100%;
   display: flex;
-  margin: 60% 50%;
-  transform: translate(-50%, -40%);
+  justify-content: center;
   font-weight: bold;
   font-size: 28px;
+  margin: 16% auto;
   text-transform: uppercase;
   line-height: 40px;
   font-family: "Fredoka One", Cambria, Cochin, Georgia, Times, "Times New Roman",
     serif;
 }
+  /* Updated Here -> Card Image Styling */
+.theme_image{
+  margin: 0 auto;
+  width: 180px;
+
+}
+.theme_image img{
+width: 100%;
+}
+
+  /* Update Ends Here */
 
 /* Button Styling */
 

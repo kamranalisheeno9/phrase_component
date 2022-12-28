@@ -8,19 +8,24 @@ import AnimationPage from "./activityCompleteAnimation";
 import "./activityCards.css";
 const Phrase = () => {
   // Phrases Data
-
+  // Array is updated with new element of image "themeImage"
   const phrases = [
     {
       text: "I am grateful",
       answer: 1,
+      themeImage:"https://static.vecteezy.com/system/resources/previews/009/268/713/original/yellow-emoji-face-reaction-illustration-free-png.png",
     },
     {
       text: "I am happy",
       answer: 1,
+      themeImage:"https://images.pngnice.com/download/2007/Sunglasses-Emoji-PNG-Download-Image.png",
+
     },
     {
       text: "I am not happy",
       answer: 0,
+      themeImage:"https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55893/angry-face-emoji-clipart-xl.png",
+
     },
   ];
 
@@ -179,6 +184,10 @@ const Phrase = () => {
                 }
               >
                 <p className="phrase">{phrases[num].text}</p>
+                {/* Added Theme Image Container */}
+                <div className="theme_image">
+                  <img src={phrases[num].themeImage} alt="theme_image" />
+                </div>
               </div>
             </div>
             <div className="buttons">

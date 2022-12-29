@@ -35,7 +35,7 @@ const Phrase = () => {
   const [repeatedPhrases, setRepeatedPhrases] = useState([]);
   const [num, setNum] = useState(0);
   // New States Added For Accuracy and Wrong 12/29/2022
-  const [wrongAnswer, setWrongAnswer] = useState(0);
+  const [wrongAnswer, setWrongAnswer] = useState(1);
   const [accuracy, setAccuracy] = useState(0);
   
   const [active, setActive] = useState(false);
@@ -54,7 +54,7 @@ const Phrase = () => {
     if (mins === 1) {
       clearTimeout(timeoutID);
       setFinalResult(true);
-    } else if (seconds === 60) {
+    } else if (seconds === 20) {
       setSeconds(0);
       setMins(mins + 1);
     }
@@ -84,10 +84,12 @@ const Phrase = () => {
   const validateAnswer = (thePhrase, TheCorrectNum, ButtonBehaviour) => {
 
     // Function Conditions For Accuracy and Wrong 12/29/2022 
+
     if (wrongAnswer === 0) {
       setAccuracy(1 * 100);
     } else {
-      setAccuracy((points / (wrongAnswer + points).toFixed(2)) * 100);
+      let accuracyDecimal=((points / (wrongAnswer + points)) * 100).toFixed(2)
+      setAccuracy(accuracyDecimal);
     }
 
     if (
@@ -106,8 +108,8 @@ const Phrase = () => {
       TheCorrectNum === 0 &&
       ButtonBehaviour === 1
     ) {
-      setActive2(true);
       setWrongAnswer(wrongAnswer + 1);
+      setActive2(true);
       wrongPlay();
       setTimeout(() => {
         newRandomNumber();
@@ -132,8 +134,9 @@ const Phrase = () => {
       TheCorrectNum === 1 &&
       ButtonBehaviour === 0
     ) {
-      setActive2(true);
       setWrongAnswer(wrongAnswer + 1);
+      setActive2(true);
+
       wrongPlay();
       setTimeout(() => {
         newRandomNumber();

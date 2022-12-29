@@ -13,19 +13,20 @@ const Phrase = () => {
     {
       text: "I am grateful",
       answer: 1,
-      themeImage:"https://static.vecteezy.com/system/resources/previews/009/268/713/original/yellow-emoji-face-reaction-illustration-free-png.png",
+      themeImage:
+        "https://static.vecteezy.com/system/resources/previews/009/268/713/original/yellow-emoji-face-reaction-illustration-free-png.png",
     },
     {
       text: "I am happy",
       answer: 1,
-      themeImage:"https://images.pngnice.com/download/2007/Sunglasses-Emoji-PNG-Download-Image.png",
-
+      themeImage:
+        "https://images.pngnice.com/download/2007/Sunglasses-Emoji-PNG-Download-Image.png",
     },
     {
       text: "I am not happy",
       answer: 0,
-      themeImage:"https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55893/angry-face-emoji-clipart-xl.png",
-
+      themeImage:
+        "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/55893/angry-face-emoji-clipart-xl.png",
     },
   ];
 
@@ -33,6 +34,10 @@ const Phrase = () => {
 
   const [repeatedPhrases, setRepeatedPhrases] = useState([]);
   const [num, setNum] = useState(0);
+  // New States Added For Accuracy and Wrong 12/29/2022
+  const [wrongAnswer, setWrongAnswer] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
+  
   const [active, setActive] = useState(false);
   const [active2, setActive2] = useState(false);
   const [points, setPoints] = useState(0);
@@ -77,6 +82,14 @@ const Phrase = () => {
   // Answer Function
   // Complete answer section is update so replace 'right and wrong functions section' with 'answer section' also update function of buttons on lines 185 and 204 by changing 'onClick function' .
   const validateAnswer = (thePhrase, TheCorrectNum, ButtonBehaviour) => {
+
+    // Function Conditions For Accuracy and Wrong 12/29/2022 
+    if (wrongAnswer === 0) {
+      setAccuracy(1 * 100);
+    } else {
+      setAccuracy((points / (wrongAnswer + points).toFixed(2)) * 100);
+    }
+
     if (
       thePhrase === phrases[num].text &&
       TheCorrectNum === 1 &&
@@ -88,13 +101,13 @@ const Phrase = () => {
       setTimeout(() => {
         setActive(false);
       }, 2000);
-      console.log(thePhrase, TheCorrectNum);
     } else if (
       thePhrase === phrases[num].text &&
       TheCorrectNum === 0 &&
       ButtonBehaviour === 1
     ) {
       setActive2(true);
+      setWrongAnswer(wrongAnswer + 1);
       wrongPlay();
       setTimeout(() => {
         newRandomNumber();
@@ -103,7 +116,6 @@ const Phrase = () => {
       setTimeout(() => {
         setActive2(false);
       }, 2000);
-      console.log(thePhrase, TheCorrectNum);
     } else if (
       thePhrase === phrases[num].text &&
       TheCorrectNum === 0 &&
@@ -121,6 +133,7 @@ const Phrase = () => {
       ButtonBehaviour === 0
     ) {
       setActive2(true);
+      setWrongAnswer(wrongAnswer + 1);
       wrongPlay();
       setTimeout(() => {
         newRandomNumber();
@@ -149,7 +162,7 @@ const Phrase = () => {
       {finalResult ? (
         // Showing Final Result Component
         <>
-          <AnimationPage points={points} />
+          <AnimationPage points={points} accuracy={accuracy} />
         </>
       ) : (
         // Main Phrase Component

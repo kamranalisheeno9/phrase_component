@@ -51,7 +51,10 @@ const AnimationPage = (props) => {
 
       {finalResults ? (
         <div className="final_card_container">
-          <p> Final Result : {props.points} </p>
+  
+          {/* Accuracy Added 12/29/2022  */}
+          <p> Total Right : {props.points}  </p>
+          <p> Accuracy : {props.accuracy} %  </p>
         </div>
       ) : letsSee ? (
         <div className="overflow">

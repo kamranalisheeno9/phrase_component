@@ -30,16 +30,24 @@ const Phrase = () => {
     },
   ];
 
+  
+
   // State Variable Declared
 
   const [repeatedPhrases, setRepeatedPhrases] = useState([]);
   const [num, setNum] = useState(0);
   // New States Added For Accuracy and Wrong 12/29/2022
-  const [wrongAnswer, setWrongAnswer] = useState(1);
+
+
+
+  // EDITED 29 December 2022 Kamran ( Updated Value of WrongAnswer from 1 to 0)
+
+
+  const [wrongAnswer, setWrongAnswer] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
-  
   const [active, setActive] = useState(false);
   const [active2, setActive2] = useState(false);
+
   const [points, setPoints] = useState(0);
   const [mins, setMins] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -54,7 +62,7 @@ const Phrase = () => {
     if (mins === 1) {
       clearTimeout(timeoutID);
       setFinalResult(true);
-    } else if (seconds === 20) {
+    } else if (seconds === 60) {
       setSeconds(0);
       setMins(mins + 1);
     }
@@ -82,15 +90,10 @@ const Phrase = () => {
   // Answer Function
   // Complete answer section is update so replace 'right and wrong functions section' with 'answer section' also update function of buttons on lines 185 and 204 by changing 'onClick function' .
   const validateAnswer = (thePhrase, TheCorrectNum, ButtonBehaviour) => {
+ 
+    // EDITED 29 December 2022 Kamran ("Function Conditions For Accuracy and Wrong 12/29/2022" part is removed from here and added below in useEffect Hook )
 
-    // Function Conditions For Accuracy and Wrong 12/29/2022 
-
-    if (wrongAnswer === 0) {
-      setAccuracy(1 * 100);
-    } else {
-      let accuracyDecimal=((points / (wrongAnswer + points)) * 100).toFixed(2)
-      setAccuracy(accuracyDecimal);
-    }
+   
 
     if (
       thePhrase === phrases[num].text &&
@@ -160,6 +163,19 @@ const Phrase = () => {
     }, 1000);
   };
 
+  // EDITED 29 December 2022 Kamran (UseEffect Hook -> Deleted Part Updated Here)
+
+  useEffect(()=>{
+    if (wrongAnswer === 0 && points === 0) {
+      setAccuracy(0 * 100);
+    } else {
+      let accuracyDecimal=((points / (wrongAnswer + points)) * 100).toFixed(2)
+      setAccuracy(accuracyDecimal);
+    }
+  },[wrongAnswer,points])
+
+
+
   return (
     <>
       {finalResult ? (
@@ -200,6 +216,7 @@ const Phrase = () => {
                 }
               >
                 <p className="phrase">{phrases[num].text}</p>
+
                 {/* Added Theme Image Container */}
                 <div className="theme_image">
                   <img src={phrases[num].themeImage} alt="theme_image" />
@@ -242,9 +259,12 @@ const Phrase = () => {
                 <div className="circle-btn"> &#10004;</div>
               </div>
             </div>
+           
           </div>
+  
         </>
       )}
+      
     </>
   );
 };

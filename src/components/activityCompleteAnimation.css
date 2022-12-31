@@ -14,9 +14,11 @@
 
 /* Final Card Styling */
     /* CSS Changes 12/29/2022 */
+ /* EDITED 29 - 31 December 2022 Kamran ( Final Results Look Changed and Bonus Added)  */
+  
 .final_card_container {
   width: 400px;
-  height: 200px;
+  height: auto;
   background: rgba(255, 255, 255, 0.28);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

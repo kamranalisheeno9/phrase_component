@@ -137,27 +137,7 @@ width: 100%;
 }
 
 /* EDITED 29 December 2022 Kamran -> Styling For Users  */
-.example_users ul{
-  list-style: none !important;
-  display: flex;
-  justify-content: space-around;
 
-}
-.example_users ul li{
-  padding: 10px;
-  background-color: #424242;
-  margin: 10px;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  transition: 0.1s all linear;
-}
-.example_users ul li:hover{
-  opacity: 0.8;
-
-
-}
 .current_user{
-  text-transform: uppercase;
   text-align: center;
 }

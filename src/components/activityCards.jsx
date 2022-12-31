@@ -30,18 +30,18 @@ const Phrase = () => {
     },
   ];
 
-  
-
   // State Variable Declared
 
   const [repeatedPhrases, setRepeatedPhrases] = useState([]);
   const [num, setNum] = useState(0);
   // New States Added For Accuracy and Wrong 12/29/2022
 
-
+  // EDITED 29 - 31 December 2022 Kamran ( Users Array and Current User)
+  const [users, setUsers] = useState(["Dom", "Mic", "John", "Nick", "Daniel"]);
+  const [currentUser, setCurrentUser] = useState("Mic");
+  const [bonusPoints, setBonusPoints] = useState(0);
 
   // EDITED 29 December 2022 Kamran ( Updated Value of WrongAnswer from 1 to 0)
-
 
   const [wrongAnswer, setWrongAnswer] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
@@ -90,10 +90,7 @@ const Phrase = () => {
   // Answer Function
   // Complete answer section is update so replace 'right and wrong functions section' with 'answer section' also update function of buttons on lines 185 and 204 by changing 'onClick function' .
   const validateAnswer = (thePhrase, TheCorrectNum, ButtonBehaviour) => {
- 
     // EDITED 29 December 2022 Kamran ("Function Conditions For Accuracy and Wrong 12/29/2022" part is removed from here and added below in useEffect Hook )
-
-   
 
     if (
       thePhrase === phrases[num].text &&
@@ -165,29 +162,58 @@ const Phrase = () => {
 
   // EDITED 29 December 2022 Kamran (UseEffect Hook -> Deleted Part Updated Here)
 
-  useEffect(()=>{
+  useEffect(() => {
     if (wrongAnswer === 0 && points === 0) {
       setAccuracy(0 * 100);
     } else {
-      let accuracyDecimal=((points / (wrongAnswer + points)) * 100).toFixed(2)
+      let accuracyDecimal = ((points / (wrongAnswer + points)) * 100).toFixed(
+        2
+      );
       setAccuracy(accuracyDecimal);
     }
-  },[wrongAnswer,points])
+  }, [wrongAnswer, points]);
 
+  // EDITED 29 - 31 December 2022 Kamran ( Bonus Function)
 
+  useEffect(()=>{
+      // Convert The array and current user into lower case
+
+    const lowerArray = users.map(element => {
+      return element.toLowerCase();
+    });
+    setCurrentUser(currentUser.toLocaleLowerCase())
+   
+    if (lowerArray.includes(currentUser.toLocaleLowerCase())) {
+      setPoints(points + 2)
+      setBonusPoints(2)
+    }
+    else if(!lowerArray.includes(currentUser.toLocaleLowerCase())){
+      setBonusPoints(11)
+      setPoints(points + 11)
+      
+    }
+    console.log("Users", users);
+    console.log("Current User", currentUser);
+  },[])
+  
 
   return (
     <>
       {finalResult ? (
         // Showing Final Result Component
         <>
-          <AnimationPage points={points} accuracy={accuracy} />
+          <AnimationPage points={points} accuracy={accuracy} bonus={bonusPoints} />
         </>
       ) : (
         // Main Phrase Component
         <>
           <div>
+  {/* EDITED 29 - 31 December 2022 Kamran (Current User Display) */}
+
+          <h2 className="current_user">{currentUser}</h2>
+
             <div className="points">
+        
               <div>
                 {mins} : {seconds}
               </div>
@@ -259,12 +285,11 @@ const Phrase = () => {
                 <div className="circle-btn"> &#10004;</div>
               </div>
             </div>
-           
           </div>
-  
+          {/* EDITED 29 December 2022 Kamran -> Users Array Component Just For Understanding the bonus function you can remove this component part when you have backend done and users in the array. */}
+        
         </>
       )}
-      
     </>
   );
 };

@@ -49,12 +49,17 @@ const AnimationPage = (props) => {
     <div className="main_container">
       {/* Final Results Part */}
 
+      {/* EDITED 29 - 31 December 2022 Kamran ( Final Results Look Changed and Bonus Added)  */}
+
       {finalResults ? (
         <div className="final_card_container">
   
           {/* Accuracy Added 12/29/2022  */}
-          <p> Total Right : {props.points}  </p>
+          <p> Ambients Earned : {props.points}  </p>
           <p> Accuracy : {props.accuracy} %  </p>
+          <p> Bonus : {props.bonus}  </p>
+          <p> Total Ambients : {props.points}  </p>
+        
         </div>
       ) : letsSee ? (
         <div className="overflow">
